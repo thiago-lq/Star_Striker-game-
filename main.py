@@ -290,8 +290,8 @@ botao_reiniciar = tk.Button(root, text="Reiniciar", font=("Orbitron", 10, "bold"
 botao_reiniciar.place_forget()
 
 #Nave e aliens que vai ter animação
-nave_img = tk.PhotoImage(file="C:/Users/Thiago/Documents/programas/vs_code/Jogo.py/nave.png")
-alien_img = tk.PhotoImage(file="C:/Users/Thiago/Documents/programas/vs_code/Jogo.py/alien.png")
+nave_img = tk.PhotoImage(file="C:/Users/Thiago/Documents/programas/vs_code/Jogo.py/assets/nave.png")
+alien_img = tk.PhotoImage(file="C:/Users/Thiago/Documents/programas/vs_code/Jogo.py/assets/alien.png")
 
 animar_fundo()
 label_placar.place_forget()
