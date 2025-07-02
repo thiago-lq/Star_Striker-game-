@@ -1,4 +1,4 @@
-# Star Striker 🚀
+# Star Striker
 
 Protótipo de um jogo 2D em Python usando Tkinter.
 
@@ -10,6 +10,3 @@ Criar um jogo arcade inspirado estilo clássico, com visual espacial e animaçõ
 ## Tecnologias
 - Python
 - Tkinter
-
-## Status
-🚧 Em desenvolvimento...
