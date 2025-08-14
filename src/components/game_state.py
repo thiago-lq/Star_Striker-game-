@@ -20,7 +20,10 @@ meteoros = []
 vidas = 3
 pontuacao = 0
 nave = None
+tempo_naves = 1500
+tempo_disparos = 2000
 # game_state.py
 nave_alien_ativa = False  # Por padrão não cria naves
 projeteis_alien_ativos = False
+botao_disparos = False
 

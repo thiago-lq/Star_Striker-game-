@@ -43,7 +43,7 @@ def mover_nave(event):
         state.canvas.coords(state.nave, event.x, event.y)
 
 # Disparo da nave
-def disparar_projeteis(event):
+def disparar_projeteis():
     if not state.nave:
         return
     x, y = state.canvas.coords(state.nave)
