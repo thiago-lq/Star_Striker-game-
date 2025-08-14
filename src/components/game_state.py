@@ -1,0 +1,26 @@
+import tkinter as tk
+
+#Interface onde vai rodar as coisas
+root = tk.Tk()
+root.title("Star Strike")
+root.geometry("500x400")  # Define o tamanho da janela
+root.configure(bg="white")
+
+# Criando um Canvas grande o suficiente
+canvas = tk.Canvas(root, width=500, height=400, bg="black")
+canvas.place(x=0, y=0, width=500, height=400)
+
+nave_img = tk.PhotoImage(file="src/assets/nave.png")
+alien_img = tk.PhotoImage(file="src/assets/alien.png")
+projeteis_alien = []
+naves_alien = []
+projeteis = []
+estrelas = []
+meteoros = []
+vidas = 3
+pontuacao = 0
+nave = None
+# game_state.py
+nave_alien_ativa = False  # Por padrão não cria naves
+projeteis_alien_ativos = False
+
