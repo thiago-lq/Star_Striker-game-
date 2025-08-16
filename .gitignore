@@ -2,7 +2,6 @@
 .venv/
 
 # PyInstaller
-dist/
 build/
 *.spec
 # Arquivos temporários do Python
