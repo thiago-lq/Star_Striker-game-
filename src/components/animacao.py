@@ -6,15 +6,15 @@ def resetar_movimento_projeteis():
 
 # Criar estrelas
 for _ in range(200):
-    x = rd.randint(0, 500)
+    x = rd.randint(0, 720)
     y = rd.randint(0, 400)
     estrela = state.canvas.create_oval(x, y, x + 2, y + 2, fill="white")
     state.estrelas.append(estrela)
 
 # Criar meteoros
 for _ in range(50):
-    x = rd.randint(0, 500)
-    y = rd.randint(0, 300)
+    x = rd.randint(0, 720)
+    y = rd.randint(0, 400)
     meteoro = state.canvas.create_line(x, y, x + 10, y + 5, fill="white")
     state.meteoros.append(meteoro)
 
@@ -24,15 +24,15 @@ def animar_fundo():
         state.canvas.move(estrela, -2, 0)
         coords = state.canvas.coords(estrela)
         if coords[2] < 0:
-            x_new = 500 + rd.randint(0, 50)
+            x_new = 720 + rd.randint(0, 50)
             y_new = rd.randint(0, 400)
             state.canvas.coords(estrela, x_new, y_new, x_new + 2, y_new + 2)
 
     for i, meteoro in enumerate(state.meteoros):
         state.canvas.move(meteoro, -4, 0)
         if state.canvas.coords(meteoro)[0] < 0:
-            x_new = 500 + rd.randint(0, 100)
-            y_new = rd.randint(0, 300)
+            x_new = 720 + rd.randint(0, 100)
+            y_new = rd.randint(0, 400)
             state.canvas.coords(meteoro, x_new, y_new, x_new + 10, y_new + 5)
 
     state.root.after(50, animar_fundo)
@@ -40,7 +40,10 @@ def animar_fundo():
 # Movimento da nave
 def mover_nave(event):
     if state.nave:
-        state.canvas.coords(state.nave, event.x, event.y)
+        # Limita y entre 0 e 420
+        y_limitado = max(0, min(event.y, 400))
+        state.canvas.coords(state.nave, event.x, y_limitado)
+
 
 # Disparo da nave
 def disparar_projeteis():
@@ -54,6 +57,8 @@ def disparar_projeteis():
 
 # Movimentar projéteis da nave
 def mover_projeteis(ganhar_pontos_func):
+    if not state.projeteis_ativos:
+        return
     for proj in state.projeteis[:]:
         state.canvas.move(proj, 10, 0)
         x1, y1, x2, y2 = state.canvas.coords(proj)
@@ -69,12 +74,12 @@ def mover_projeteis(ganhar_pontos_func):
                 ganhar_pontos_func(100)
                 break
 
-        if x1 > 500:
+        if x1 > 720:
             state.canvas.delete(proj)
             if proj in state.projeteis:
                 state.projeteis.remove(proj)
 
-    state.root.after(50, lambda: mover_projeteis(ganhar_pontos_func))
+    state.root.after(25, lambda: mover_projeteis(ganhar_pontos_func))
 
 # Movimentar naves alienígenas
 def mover_naves_alien():

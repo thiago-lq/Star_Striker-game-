@@ -25,8 +25,8 @@ def disparo_continuo():
 def criar_nave_alien():
     if not state.nave_alien_ativa:
         return
-    coordenada_nave_y = rd.randint(50, 300)
-    nave = state.canvas.create_image(500, coordenada_nave_y, image=state.alien_img)
+    coordenada_nave_y = rd.randint(50, 400)
+    nave = state.canvas.create_image(720, coordenada_nave_y, image=state.alien_img)
     state.naves_alien.append(nave)
     # Passa a nave recém-criada para disparar projéteis
     disparar_projeteis_alien(nave)

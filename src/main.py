@@ -16,7 +16,7 @@ def ganhar_pontos(valor):
 # Fim do jogo
 def fim_do_jogo():
     state.canvas.unbind("<Motion>")
-    state.canvas.unbind("<ButtonPress-1>", "ButtonRelease-1")
+    state.canvas.unbind("<Button-1>")
     state.root.config(cursor="")
     if state.nave:
         state.canvas.delete(state.nave)
@@ -27,12 +27,13 @@ def fim_do_jogo():
     state.projeteis_alien.clear()
     state.nave_alien_ativa = False
     state.projeteis_alien_ativos = False
+    state.projeteis_ativos = False
     state.tempo_disparos = 2000
     state.tempo_naves = 1500
     global label_game_over
     label_game_over = state.tk.Label(state.root, text="GAME OVER", font=("Orbitron", 24, "bold"), fg="red", bg="black")
-    label_game_over.place(x=135, y=120)
-    botao_reiniciar.place(x=215, y=220)
+    label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=144)
+    botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=264)
 
 def fim_do_jogo_esc():
     state.canvas.unbind("<Motion>")
@@ -40,11 +41,12 @@ def fim_do_jogo_esc():
     state.root.config(cursor="")
     state.nave_alien_ativa = False
     state.projeteis_alien_ativos = False
+    state.projeteis_ativos = False
     global label_game_over
     label_game_over = state.tk.Label(state.root, text="JOGO PAUSADO", font=("Orbitron", 24, "bold"), fg="yellow", bg="black")
-    label_game_over.place(x=100, y=120)
-    botao_reiniciar.place(x=215, y=220)
-    botao_resumir.place(x=210, y=180)
+    label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=144)
+    botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=264)
+    botao_resumir.place(x=(720 - botao_resumir.winfo_reqwidth()) / 2, y=216)
 
 # Iniciar jogo
 def iniciar_jogo():
@@ -52,12 +54,13 @@ def iniciar_jogo():
     label_nome.place_forget()
     botao_entrar.place_forget()
     botao_sair.place_forget()
-    label_placar.place(x=10, y=(y1 + y2 - label_placar.winfo_reqheight()) / 2)
-    coração_placar.place(x=375, y=(y1 + y2 - coração_placar.winfo_reqheight()) / 2)
+    label_placar.place(x=14, y=(y1 + y2 - label_placar.winfo_reqheight()) / 2)
+    coração_placar.place(x=590, y=(y1 + y2 - coração_placar.winfo_reqheight()) / 2)
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
+    state.projeteis_ativos = True
 
-    state.nave = state.canvas.create_image(250, 200, image=state.nave_img)
+    state.nave = state.canvas.create_image(360, 240, image=state.nave_img)
     state.canvas.bind("<Motion>", animacao.mover_nave)
     state.canvas.bind("<ButtonPress-1>", gameplay.iniciar_disparos)
     state.canvas.bind("<ButtonRelease-1>", gameplay.parar_disparos)
@@ -92,9 +95,10 @@ def reiniciar_jogo():
     
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
+    state.projeteis_ativos = True
     state.tempo_naves = 1500
     state.tempo_disparos = 2000
-    state.nave = state.canvas.create_image(250, 200, image=state.nave_img)
+    state.nave = state.canvas.create_image(360, 240, image=state.nave_img)
     state.canvas.bind("<Motion>", animacao.mover_nave)
     state.canvas.bind("<ButtonPress-1>", gameplay.iniciar_disparos)
     state.canvas.bind("<ButtonRelease-1>", gameplay.parar_disparos)
@@ -111,6 +115,7 @@ def resumir_jogo():
     botao_resumir.place_forget()
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
+    state.projeteis_ativos = True
     state.canvas.bind("<Motion>", animacao.mover_nave)
     state.canvas.bind("<ButtonPress-1>", gameplay.iniciar_disparos)
     state.canvas.bind("<ButtonRelease-1>", gameplay.parar_disparos)
@@ -123,22 +128,22 @@ def resumir_jogo():
 
 # ------------------------------------------------------------------------------------------------------
 # Configuração da interface
-retangulo_placar = state.canvas.create_rectangle(0, 350, 500, 400, fill="gray")
+retangulo_placar = state.canvas.create_rectangle(0, 420, 720, 480, fill="gray")
 x1, y1, x2, y2 = state.canvas.coords(retangulo_placar)
 
 label_placar = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 8, "bold"), bg="gray", fg="white")
 coração_placar = state.tk.Label(state.root, text="❤️ ❤️ ❤️", font=("Arial", 12), bg="gray", fg="red")
 
 label_nome = state.tk.Label(state.root, text="Star Striker", font=("Orbitron", 32), bg="black", fg="white")
-label_nome.place(x=(500 - label_nome.winfo_reqwidth()) / 2, y=20)
+label_nome.place(x=(720 - label_nome.winfo_reqwidth()) / 2, y=24)
 label_opcao = state.tk.Label(state.root, text="Menu", font=("Orbitron", 11, "bold"), fg="white", bg="black")
-label_opcao.place(x=(500 - label_opcao.winfo_reqwidth()) / 2, y=250)
+label_opcao.place(x=(720 - label_opcao.winfo_reqwidth()) / 2, y=300)
 
 botao_entrar = state.tk.Button(state.root, text="Entrar no jogo", command=iniciar_jogo, font=("Orbitron", 8, "bold"), fg="white", bg="black")
-botao_entrar.place(x=(500 - botao_entrar.winfo_reqwidth()) / 2, y=280)
+botao_entrar.place(x=(720 - botao_entrar.winfo_reqwidth()) / 2, y=336)
 
 botao_sair = state.tk.Button(state.root, text="Sair do jogo", command=lambda: state.root.quit(), font=("Orbitron", 8, "bold"), fg="white", bg="black")
-botao_sair.place(x=(500 - botao_sair.winfo_reqwidth()) / 2, y=310)
+botao_sair.place(x=(720 - botao_sair.winfo_reqwidth()) / 2, y=372)
 
 botao_reiniciar = state.tk.Button(state.root, text="Reiniciar", font=("Orbitron", 10, "bold"), fg="white", bg="black", command=reiniciar_jogo)
 botao_reiniciar.place_forget()
