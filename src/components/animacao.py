@@ -18,7 +18,6 @@ for _ in range(50):
     meteoro = state.canvas.create_line(x, y, x + 10, y + 5, fill="white")
     state.meteoros.append(meteoro)
 
-# Animação do fundo
 def animar_fundo():
     for i, estrela in enumerate(state.estrelas):
         state.canvas.move(estrela, -2, 0)
@@ -37,17 +36,16 @@ def animar_fundo():
 
     state.root.after(50, animar_fundo)
 
-# Movimento da nave
+
 def mover_nave(event):
     if state.nave:
-        # Limita y entre 0 e 420
-        y_limitado = max(0, min(event.y, 400))
+        y_limitado = max(0, min(event.y, 400)) # Limita y entre 0 e 420
         state.canvas.coords(state.nave, event.x, y_limitado)
 
 
-# Disparo da nave
+
 def disparar_projeteis():
-    if not state.nave:
+    if not state.nave: # Verifica se existe uma nave
         return
     x, y = state.canvas.coords(state.nave)
 
@@ -55,9 +53,9 @@ def disparar_projeteis():
     proj_baixo = state.canvas.create_oval(x - 3, y + 5, x + 3, y + 15, fill="yellow")
     state.projeteis.extend([proj_cima, proj_baixo])
 
-# Movimentar projéteis da nave
+
 def mover_projeteis(ganhar_pontos_func):
-    if not state.projeteis_ativos:
+    if not state.projeteis_ativos: # Verifica se projeteis estão ativos
         return
     for proj in state.projeteis[:]:
         state.canvas.move(proj, 10, 0)
@@ -73,7 +71,7 @@ def mover_projeteis(ganhar_pontos_func):
                 state.projeteis.remove(proj)
                 ganhar_pontos_func(100)
                 break
-
+        # Verifica se projéteis saíram da tela
         if x1 > 720:
             state.canvas.delete(proj)
             if proj in state.projeteis:
@@ -81,11 +79,11 @@ def mover_projeteis(ganhar_pontos_func):
 
     state.root.after(25, lambda: mover_projeteis(ganhar_pontos_func))
 
-# Movimentar naves alienígenas
-def mover_naves_alien():
-    if not state.nave_alien_ativa:  # Para o loop se flag for False
-        return
 
+def mover_naves_alien():
+    if not state.nave_alien_ativa: # Verifica se naves alien estão ativas
+        return
+    
     for nave in state.naves_alien[:]:
         state.canvas.move(nave, -2, 0)
         if state.canvas.coords(nave)[0] < 0:
@@ -94,15 +92,15 @@ def mover_naves_alien():
 
     state.root.after(50, mover_naves_alien)
 
-# Movimentar projéteis alienígenas
 def mover_projeteis_alien(atualizar_coracoes_func, fim_do_jogo_func):
-    if not state.projeteis_alien_ativos:  # Para o loop se flag for False
+    if not state.projeteis_alien_ativos: # Verifica se projeteis alien estão ativos
         return
 
     for proj in state.projeteis_alien[:]:
         state.canvas.move(proj, -10, 0)
         x1, y1, x2, y2 = state.canvas.coords(proj)
 
+        # Verifica se projéteis alien atingiram a nave do jogador
         if state.nave:
             nx, ny = state.canvas.coords(state.nave)
             if abs((x1 + x2)/2 - nx) < 20 and abs((y1 + y2)/2 - ny) < 20:
@@ -115,7 +113,7 @@ def mover_projeteis_alien(atualizar_coracoes_func, fim_do_jogo_func):
                     fim_do_jogo_func()
                 continue
 
-        if x2 < 0:
+        if x2 < 0: # Verifica se projéteis dos aliens saíram da tela
             state.canvas.delete(proj)
             if proj in state.projeteis_alien:
                 state.projeteis_alien.remove(proj)
