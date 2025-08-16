@@ -24,8 +24,9 @@ canvas = tk.Canvas(root, width=720, height=480, bg="black")
 canvas.place(x=0, y=0, width=720, height=480)
 
 # Criando game states variables para usar no jogo
-nave_img = tk.PhotoImage(file=resource_path("assets/nave.png"))
-alien_img = tk.PhotoImage(file=resource_path("assets/alien.png"))
+nave_img = tk.PhotoImage(file=resource_path("src/assets/nave.png"))
+alien_img = tk.PhotoImage(file=resource_path("src/assets/alien.png"))
+root.iconphoto(False, tk.PhotoImage(file=resource_path("src/assets/icone_do_jogo.png")))
 projeteis_alien = []
 naves_alien = []
 projeteis = []

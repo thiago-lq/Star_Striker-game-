@@ -96,6 +96,7 @@ def reiniciar_jogo():
         label_game_over.destroy()
     botao_reiniciar.place_forget()
     botao_resumir.place_forget()
+    botao_menu.place_forget()
     
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
