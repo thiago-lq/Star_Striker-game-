@@ -1,4 +1,17 @@
+# Ambiente virtual
+.venv/
+
+# PyInstaller
+dist/
+build/
+*.spec
+# Arquivos temporários do Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 *.log
 .env
+# Outros arquivos de sistema
+.DS_Store
+Thumbs.db
