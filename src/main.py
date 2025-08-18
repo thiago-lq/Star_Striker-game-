@@ -7,6 +7,7 @@ def atualizar_coracoes():
 
 def atualizar_pontuacao():
     label_placar.config(text=f"Pontuação: {state.pontuacao}")
+    label_placar.place(x=14, y=(y1 + y2 - label_placar.winfo_reqheight()) / 2)
 
 def ganhar_pontos(valor):
     state.pontuacao += valor
@@ -32,8 +33,10 @@ def fim_do_jogo():
     global label_game_over
     label_game_over = state.tk.Label(state.root, text="GAME OVER", font=("Orbitron", 24, "bold"), fg="red", bg="black")
     label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=124)
-    botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=216)
-    botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=264)
+    label_placar_fim.place(x=(720 - label_placar.winfo_reqwidth()) / 2, y = 180)
+    botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=236)
+    botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=294)
+    label_placar.place_forget()
 
 def fim_do_jogo_esc():
     # Limpa a tela, renicia as variáveis do game_state, muda a utilização do mouse e exibe a mensagem de fim de jogo
@@ -97,6 +100,7 @@ def reiniciar_jogo():
     botao_reiniciar.place_forget()
     botao_resumir.place_forget()
     botao_menu.place_forget()
+    label_placar_fim.place_forget()
     
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
@@ -139,6 +143,7 @@ def menu_jogo():
     botao_reiniciar.place_forget()
     botao_resumir.place_forget()
     botao_menu.place_forget()
+    label_placar_fim.place_forget()
     state.canvas.unbind("<Motion>")
     state.canvas.unbind("<Button-1>")
     state.root.config(cursor="")
@@ -155,10 +160,10 @@ def menu_jogo():
     state.tempo_disparos = 2000
     state.tempo_naves = 1500
 
-    label_opcao.place(x=(720 - label_opcao.winfo_reqwidth()) / 2, y=220)
     label_nome.place(x=(720 - label_nome.winfo_reqwidth()) / 2, y=24)
+    label_opcao.place(x=(720 - label_opcao.winfo_reqwidth()) / 2, y=200)
     botao_entrar.place(x=(720 - botao_entrar.winfo_reqwidth()) / 2, y=260)
-    botao_sair.place(x=(720 - botao_sair.winfo_reqwidth()) / 2, y=300)
+    botao_sair.place(x=(720 - botao_sair.winfo_reqwidth()) / 2, y=320)
     
 
 # ------------------------------------------------------------------------------------------------------
@@ -167,6 +172,8 @@ retangulo_placar = state.canvas.create_rectangle(0, 420, 720, 480, fill="black",
 x1, y1, x2, y2 = state.canvas.coords(retangulo_placar)
 
 label_placar = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 8, "bold"), bg="black", fg="white")
+label_placar_fim = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 8, "bold"), bg="black", fg="white")
+label_placar_fim.place_forget()
 coração_placar = state.tk.Label(state.root, text="❤️ ❤️ ❤️", font=("Arial", 12), bg="black", fg="red")
 
 label_nome = state.tk.Label(state.root, text="Star Striker", font=("Orbitron", 32), bg="black", fg="white")

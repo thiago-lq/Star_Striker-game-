@@ -3,8 +3,8 @@ from src.components import game_state as state
 from src.components import animacao
 
 #limites de tempo
-tempo_naves_minimo = 500
-tempo_disparos_minimo = 1000
+tempo_naves_minimo = 650
+tempo_disparos_minimo = 1150
 # Variável para controlar o estado do botão de disparos
 botao_pressionado = state.botao_disparos
 
@@ -32,7 +32,7 @@ def criar_nave_alien():
     # Continua criando naves a cada 1,5 segundos
     state.root.after(state.tempo_naves, criar_nave_alien)
     if state.tempo_naves > tempo_naves_minimo:
-        state.tempo_naves = state.tempo_naves - 25
+        state.tempo_naves = state.tempo_naves - 1
 
 def disparar_projeteis_alien(nave):
     coords = state.canvas.coords(nave)
@@ -49,4 +49,4 @@ def disparar_projeteis_alien(nave):
     # Dispara projéteis a cada 2 segundos
     state.root.after(state.tempo_disparos, lambda: disparar_projeteis_alien(nave))
     if state.tempo_disparos > tempo_disparos_minimo:
-        state.tempo_disparos = state.tempo_disparos - 25
+        state.tempo_disparos = state.tempo_disparos - 1
