@@ -33,10 +33,9 @@ def fim_do_jogo():
     global label_game_over
     label_game_over = state.tk.Label(state.root, text="GAME OVER", font=("Orbitron", 24, "bold"), fg="red", bg="black")
     label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=124)
-    label_placar_fim.place(x=(720 - label_placar.winfo_reqwidth()) / 2, y = 180)
+    label_placar.place(x=(720 - label_placar.winfo_reqwidth()) / 2, y = 180)
     botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=236)
     botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=294)
-    label_placar.place_forget()
 
 def fim_do_jogo_esc():
     # Limpa a tela, renicia as variáveis do game_state, muda a utilização do mouse e exibe a mensagem de fim de jogo
@@ -100,7 +99,7 @@ def reiniciar_jogo():
     botao_reiniciar.place_forget()
     botao_resumir.place_forget()
     botao_menu.place_forget()
-    label_placar_fim.place_forget()
+    label_placar.place(x=14, y=(y1 + y2 - label_placar.winfo_reqheight()) / 2)
     
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
@@ -143,7 +142,7 @@ def menu_jogo():
     botao_reiniciar.place_forget()
     botao_resumir.place_forget()
     botao_menu.place_forget()
-    label_placar_fim.place_forget()
+    label_placar.place_forget()
     state.canvas.unbind("<Motion>")
     state.canvas.unbind("<Button-1>")
     state.root.config(cursor="")
@@ -172,8 +171,6 @@ retangulo_placar = state.canvas.create_rectangle(0, 420, 720, 480, fill="black",
 x1, y1, x2, y2 = state.canvas.coords(retangulo_placar)
 
 label_placar = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 8, "bold"), bg="black", fg="white")
-label_placar_fim = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 8, "bold"), bg="black", fg="white")
-label_placar_fim.place_forget()
 coração_placar = state.tk.Label(state.root, text="❤️ ❤️ ❤️", font=("Arial", 12), bg="black", fg="red")
 
 label_nome = state.tk.Label(state.root, text="Star Striker", font=("Orbitron", 32), bg="black", fg="white")
