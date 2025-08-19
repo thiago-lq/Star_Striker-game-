@@ -41,8 +41,8 @@ def disparar_projeteis_alien(nave):
     # Obtém as coordenadas da nave alien para criar o projétil
     coordenada_dProjeteis_x, coordenada_dProjeteis_y = state.canvas.coords(nave)
     projetil = state.canvas.create_oval(
-        coordenada_dProjeteis_x - 3, coordenada_dProjeteis_y - 5,
-        coordenada_dProjeteis_x + 3, coordenada_dProjeteis_y + 5,
+        coordenada_dProjeteis_x - 5, coordenada_dProjeteis_y - 7,
+        coordenada_dProjeteis_x + 5, coordenada_dProjeteis_y + 7,
         fill="red"
     )
     state.projeteis_alien.append(projetil)

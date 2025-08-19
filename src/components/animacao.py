@@ -49,8 +49,8 @@ def disparar_projeteis():
         return
     x, y = state.canvas.coords(state.nave)
 
-    proj_cima = state.canvas.create_oval(x - 3, y - 15, x + 3, y - 5, fill="yellow")
-    proj_baixo = state.canvas.create_oval(x - 3, y + 5, x + 3, y + 15, fill="yellow")
+    proj_cima = state.canvas.create_oval(x - 5, y - 17, x + 5, y - 7, fill="blue")
+    proj_baixo = state.canvas.create_oval(x - 5, y + 7, x + 5, y + 17, fill="blue")
     state.projeteis.extend([proj_cima, proj_baixo])
 
 
@@ -68,8 +68,10 @@ def mover_projeteis(ganhar_pontos_func):
                 state.canvas.delete(nave)
                 state.canvas.delete(proj)
                 state.naves_alien.remove(nave)
+                state.canvas.create_image(nx, ny, image=state.explosao_img, tag="explosao")
                 state.projeteis.remove(proj)
                 ganhar_pontos_func(100)
+                state.canvas.after(300, lambda t="explosao": state.canvas.delete(t))
                 break
         # Verifica se projéteis saíram da tela
         if x1 > 720:

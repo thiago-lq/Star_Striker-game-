@@ -32,10 +32,10 @@ def fim_do_jogo():
     state.tempo_naves = 1500
     global label_game_over
     label_game_over = state.tk.Label(state.root, text="GAME OVER", font=("Orbitron", 24, "bold"), fg="red", bg="black")
-    label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=124)
+    label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=100)
     label_placar.place(x=(720 - label_placar.winfo_reqwidth()) / 2, y = 180)
-    botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=236)
-    botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=294)
+    botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=240)
+    botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=315)
 
 def fim_do_jogo_esc():
     # Limpa a tela, renicia as variáveis do game_state, muda a utilização do mouse e exibe a mensagem de fim de jogo
@@ -47,10 +47,10 @@ def fim_do_jogo_esc():
     state.projeteis_ativos = False
     global label_game_over
     label_game_over = state.tk.Label(state.root, text="JOGO PAUSADO", font=("Orbitron", 24, "bold"), fg="yellow", bg="black")
-    label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=124)
+    label_game_over.place(x=(720 - label_game_over.winfo_reqwidth()) / 2, y=100)
     botao_reiniciar.place(x=(720 - botao_reiniciar.winfo_reqwidth()) / 2, y=264)
-    botao_resumir.place(x=(720 - botao_resumir.winfo_reqwidth()) / 2, y=216)
-    botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=312)
+    botao_resumir.place(x=(720 - botao_resumir.winfo_reqwidth()) / 2, y=200)
+    botao_menu.place(x=(720 - botao_menu.winfo_reqwidth()) / 2, y=330)
 
 # Iniciar jogo
 def iniciar_jogo():
@@ -64,7 +64,7 @@ def iniciar_jogo():
     botao_entrar.place_forget()
     botao_sair.place_forget()
     label_placar.place(x=14, y=(y1 + y2 - label_placar.winfo_reqheight()) / 2)
-    coração_placar.place(x=590, y=(y1 + y2 - coração_placar.winfo_reqheight()) / 2)
+    coração_placar.place(x=570, y=(y1 + y2 - coração_placar.winfo_reqheight()) / 2)
     state.nave_alien_ativa = True
     state.projeteis_alien_ativos = True
     state.projeteis_ativos = True
@@ -143,6 +143,7 @@ def menu_jogo():
     botao_resumir.place_forget()
     botao_menu.place_forget()
     label_placar.place_forget()
+    coração_placar.place_forget()
     state.canvas.unbind("<Motion>")
     state.canvas.unbind("<Button-1>")
     state.root.config(cursor="")
@@ -170,28 +171,28 @@ def menu_jogo():
 retangulo_placar = state.canvas.create_rectangle(0, 420, 720, 480, fill="black", outline="gray")
 x1, y1, x2, y2 = state.canvas.coords(retangulo_placar)
 
-label_placar = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 8, "bold"), bg="black", fg="white")
-coração_placar = state.tk.Label(state.root, text="❤️ ❤️ ❤️", font=("Arial", 12), bg="black", fg="red")
+label_placar = state.tk.Label(state.root, text=f"Pontuação: {state.pontuacao}", font=("Orbitron", 15, "bold"), bg="black", fg="white")
+coração_placar = state.tk.Label(state.root, text="❤️ ❤️ ❤️", font=("Arial", 15), bg="black", fg="red")
 
-label_nome = state.tk.Label(state.root, text="Star Striker", font=("Orbitron", 32), bg="black", fg="white")
+label_nome = state.tk.Label(state.root, text="Star Striker", font=("Orbitron", 36), bg="black", fg="white")
 label_nome.place(x=(720 - label_nome.winfo_reqwidth()) / 2, y=24)
 
-label_opcao = state.tk.Label(state.root, text="Menu", font=("Orbitron", 15, "bold"), fg="white", bg="black")
-label_opcao.place(x=(720 - label_opcao.winfo_reqwidth()) / 2, y=200)
+label_opcao = state.tk.Label(state.root, text="Menu", font=("Orbitron", 18, "bold"), fg="white", bg="black")
+label_opcao.place(x=(720 - label_opcao.winfo_reqwidth()) / 2, y=150)
 
-botao_entrar = state.tk.Button(state.root, text="Entrar no jogo", command=iniciar_jogo, font=("Orbitron", 12, "bold"), fg="white", bg="black")
-botao_entrar.place(x=(720 - botao_entrar.winfo_reqwidth()) / 2, y=260)
+botao_entrar = state.tk.Button(state.root, text="Entrar no jogo", command=iniciar_jogo, font=("Orbitron", 15, "bold"), fg="white", bg="black")
+botao_entrar.place(x=(720 - botao_entrar.winfo_reqwidth()) / 2, y=220)
 
-botao_sair = state.tk.Button(state.root, text="Sair do jogo", command=lambda: state.root.quit(), font=("Orbitron", 12, "bold"), fg="white", bg="black")
-botao_sair.place(x=(720 - botao_sair.winfo_reqwidth()) / 2, y=320)
+botao_sair = state.tk.Button(state.root, text="Sair do jogo", command=lambda: state.root.quit(), font=("Orbitron", 15, "bold"), fg="white", bg="black")
+botao_sair.place(x=(720 - botao_sair.winfo_reqwidth()) / 2, y=290)
 
-botao_reiniciar = state.tk.Button(state.root, text="Reiniciar", font=("Orbitron", 12, "bold"), fg="white", bg="black", command=reiniciar_jogo)
+botao_reiniciar = state.tk.Button(state.root, text="Reiniciar", font=("Orbitron", 15, "bold"), fg="white", bg="black", command=reiniciar_jogo)
 botao_reiniciar.place_forget()
 
-botao_resumir = state.tk.Button(state.root, text="Continuar", font=("Orbitron", 12, "bold"), fg="white", bg="black", command = resumir_jogo)
+botao_resumir = state.tk.Button(state.root, text="Continuar", font=("Orbitron", 15, "bold"), fg="white", bg="black", command = resumir_jogo)
 botao_resumir.place_forget()
 
-botao_menu = state.tk.Button(state.root, text="Voltar ao menu", font=("Orbitron", 12, "bold"), fg="white", bg="black", command = menu_jogo)
+botao_menu = state.tk.Button(state.root, text="Voltar ao menu", font=("Orbitron", 15, "bold"), fg="white", bg="black", command = menu_jogo)
 botao_menu.place_forget()
 
 
