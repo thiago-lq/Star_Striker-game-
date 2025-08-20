@@ -3,8 +3,8 @@ from src.components import game_state as state
 from src.components import animacao
 
 #limites de tempo
-tempo_naves_minimo = 650
-tempo_disparos_minimo = 1150
+tempo_naves_minimo = 500
+tempo_disparos_minimo = 1000
 # Variável para controlar o estado do botão de disparos
 botao_pressionado = state.botao_disparos
 
