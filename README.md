@@ -14,7 +14,6 @@ Todo o projeto foi desenvolvido em **Python**, utilizando exclusivamente a bibli
 
 O projeto foi criado com fins de estudo e prática de programação, servindo como base para aprendizado sobre interfaces gráficas e desenvolvimento de jogos com Python.
 
----
 
 ## Como jogar
 
@@ -22,13 +21,11 @@ O projeto foi criado com fins de estudo e prática de programação, servindo co
 * Derrote os alienígenas e acumule pontos.
 * O desafio é sobreviver o máximo possível.
 
----
 
 ## Executável
 
 O jogo já está compilado, e o arquivo executável pode ser encontrado na pasta **`Dist`**, pronto para rodar sem necessidade de configuração adicional.
 
----
 
 ## Rodando pelo código-fonte
 
